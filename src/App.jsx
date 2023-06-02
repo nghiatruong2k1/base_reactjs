@@ -2,17 +2,19 @@ import { memo, Fragment, useEffect } from 'react';
 import Fonts from '~/assets/fonts';
 import Styles from '~/assets/styles';
 import States from '~/states';
-import { routers } from './Router';
+import Router from './Router';
 
 function AppComponent() {
   useEffect(() => {
-    console.log(process.env, routers);
+    console.log(process.env);
   }, []);
   return (
     <Fragment>
       <Fonts>
         <States>
-          <Styles></Styles>
+          <Styles>
+            <Router />
+          </Styles>
         </States>
       </Fonts>
     </Fragment>

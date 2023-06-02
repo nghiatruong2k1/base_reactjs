@@ -11,8 +11,20 @@ export class RouteConfig extends NewObject {
     const { layout, params, children } = options;
     const regex = /:[a-zA-Z]{1,}/g;
     const _this = this;
+
+    Object.defineProperty(_this, 'path', {
+      enumerable: true,
+      writable: false,
+      value: path || '',
+    });
+    Object.defineProperty(_this, 'children', {
+      enumerable: true,
+      writable: false,
+      value: new NewObject(),
+    });
+
     Object.defineProperty(_this, 'title', {
-      enumerable: false,
+      enumerable: true,
       writable: false,
       value: title,
     });
@@ -22,12 +34,12 @@ export class RouteConfig extends NewObject {
       value: params,
     });
     Object.defineProperty(_this, 'page', {
-      enumerable: false,
+      enumerable: true,
       writable: false,
       value: page || null,
     });
     Object.defineProperty(_this, 'layout', {
-      enumerable: false,
+      enumerable: true,
       writable: false,
       value: layout || 'Default',
     });
@@ -37,22 +49,15 @@ export class RouteConfig extends NewObject {
       value: null,
     });
     Object.defineProperty(_this, 'getFullPath', {
-        enumerable: false,
-        writable: false,
-        value: function () {
-          if (_this.parent) {
-            let parent_path = _this.parent.getPath();
-            return `${parent_path}/${path}` || '';
-          } else {
-            return path || '';
-          }
-        },
-      });
-    Object.defineProperty(_this, 'getPath', {
       enumerable: false,
-      writable: false,
+      writable: true,
       value: function () {
-        return path || '';
+        if (_this.parent) {
+          let parent_path = _this.parent.path;
+          return `${parent_path}/${path}` || '';
+        } else {
+          return path || '';
+        }
       },
     });
     Object.defineProperty(_this, 'getAction', {
@@ -61,6 +66,7 @@ export class RouteConfig extends NewObject {
       value: function (values) {
         if (typeof path === 'string' && path !== '*') {
           let str = `/${_this.getFullPath()}`;
+          console.log(str)
           const args = str.match(regex);
           if (args && Array.isArray(args)) {
             args.forEach((arg) => {
@@ -70,16 +76,16 @@ export class RouteConfig extends NewObject {
                 (values && values[key]) || params?.[key] || '',
               );
             });
-            return str;
           }
+          return str;
         }
         return '/404';
       },
     });
     if (children) {
       Object.keys(children).forEach((key) => {
-        this[key] = children[key];
-        this[key].parent = this;
+        this.children[key] = children[key];
+        this.children[key].parent = this;
       });
     }
   }
