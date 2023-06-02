@@ -24,12 +24,8 @@
       'Noto Color Emoji';
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
       'Liberation Mono', 'Courier New', monospace;
+    --font-text: 'TimesNewRoman';
   
-      --font-text: 'TimesNewRoman';
-  
-  
-      --index-loading:999999999999999;
-      --index-toast:999999999999998;
   }
   
   * {
