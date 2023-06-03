@@ -2,7 +2,6 @@ import {
   Outlet,
   Route,
   RouterProvider,
-  Routes,
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
@@ -39,7 +38,7 @@ function RenderRoute(props, key) {
   );
 }
 
-function RouterComponent({ Root }) {
+function RouterComponent() {
   const routers = useMemo(() => {
     console.log(Controller);
     return createBrowserRouter(

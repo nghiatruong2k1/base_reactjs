@@ -1,3 +1,5 @@
 export default async function HomeLoader({ request }) {
-  return 'hello world';
+  return {
+    title:"Trang chủ"
+  };
 }

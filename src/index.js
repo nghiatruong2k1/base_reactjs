@@ -2,10 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '~/App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
 import Router from './Router';
+import Fonts from './assets/fonts';
+import States from './states';
+import Styles from './assets/styles';
 export const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Router Root={App} />);
+root.render(
+  <Fonts>
+    <States>
+      <Styles>
+        <App>
+          <Router />
+        </App>
+      </Styles>
+    </States>
+  </Fonts>,
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
