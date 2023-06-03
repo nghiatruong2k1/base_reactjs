@@ -9,4 +9,5 @@ function HomeComponent(props){
             <div><Link to={Controller.notfound.getAction()}>{Controller.notfound.title}</Link></div>
         </Fragment>
     )
-};export default memo(HomeComponent)
+};
+export default memo(HomeComponent)

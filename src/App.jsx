@@ -3,7 +3,6 @@ import Fonts from '~/assets/fonts';
 import Styles from '~/assets/styles';
 import States from '~/states';
 import Router from './Router';
-
 function AppComponent() {
   useEffect(() => {
     console.log(process.env);

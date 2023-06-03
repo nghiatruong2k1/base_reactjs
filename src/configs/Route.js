@@ -66,7 +66,6 @@ export class RouteConfig extends NewObject {
       value: function (values) {
         if (typeof path === 'string' && path !== '*') {
           let str = `/${_this.getFullPath()}`;
-          console.log(str)
           const args = str.match(regex);
           if (args && Array.isArray(args)) {
             args.forEach((arg) => {
