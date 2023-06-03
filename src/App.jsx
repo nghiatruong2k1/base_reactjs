@@ -2,8 +2,7 @@ import { memo, Fragment, useEffect } from 'react';
 import Fonts from '~/assets/fonts';
 import Styles from '~/assets/styles';
 import States from '~/states';
-import Router from './Router';
-function AppComponent() {
+function AppComponent({ children }) {
   useEffect(() => {
     console.log(process.env);
   }, []);
@@ -11,9 +10,7 @@ function AppComponent() {
     <Fragment>
       <Fonts>
         <States>
-          <Styles>
-            <Router />
-          </Styles>
+          <Styles>{children}</Styles>
         </States>
       </Fonts>
     </Fragment>

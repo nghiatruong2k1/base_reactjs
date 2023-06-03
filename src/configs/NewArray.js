@@ -8,11 +8,11 @@ export class NewArray extends Array {
       });
     Object.defineProperty(_this, 'addPrivate', {
       enumerable: false,
-      value: function (key, value,props) {
+      value: function (key, value, writable = true) {
         Object.defineProperty(this, key, {
           enumerable: false,
+          writable,
           value: value,
-          ...props
         });
       },
     });

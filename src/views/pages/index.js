@@ -1,2 +1,2 @@
-export { default as HomePage } from './Home';
-export { default as NotFoundPage } from './NotFound';
+export * from './Home';
+export * from './NotFound';

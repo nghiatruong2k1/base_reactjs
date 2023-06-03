@@ -1,4 +1,11 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import {
+  Outlet,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 import { Fragment, memo, useEffect, useMemo } from 'react';
 import * as pages from '~/views/pages';
 import * as layouts from '~/views/layouts';
@@ -19,23 +26,29 @@ const Element = memo(({ title, page, layout }) => {
     </Fragment>
   );
 });
-function RenderRoute({ children, title, page, layout, ...props }, key) {
+function RenderRoute(props, key) {
   return (
     <Route
       key={key}
-      element={<Element title={title} page={page} layout={layout} />}
-      {...props}
+      path={props.path}
+      loader={pages[`${props.page}Loader`]}
+      element={<Element page={props.page} layout={props.layout} />}
     >
-      {children.map((route, index) => RenderRoute(route, index))}
+      {props.map((route, index) => RenderRoute(route, index))}
     </Route>
   );
 }
-export default function RouterComponent() {
+
+function RouterComponent({ Root }) {
   const routers = useMemo(() => {
-    const rs = Controller.map((route, index) => RenderRoute(route, index));
-    console.log('routers:',rs);
-    return rs;
+    console.log(Controller);
+    return createBrowserRouter(
+      createRoutesFromElements(
+        Controller.map((route, index) => RenderRoute(route, index)),
+      ),
+    );
   }, []);
-  return <Routes>{routers}</Routes>;
+  return <RouterProvider router={routers} />;
 }
+export default memo(RouterComponent);
 //createBrowserRouter(createRoutesFromElements())
