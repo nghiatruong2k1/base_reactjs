@@ -11,16 +11,22 @@ import * as layouts from '~/views/layouts';
 import { Controller } from './controllers';
 
 const Element = memo(({ title, page, layout }) => {
-  const Layout =
-    layout === null ? Fragment : layouts[`${layout}Layout`] ?? Fragment;
-  const Page = pages[`${page}Page`] ?? Outlet;
+  let Page = Outlet;
+  let Layout = Fragment;
+  if (page !== null) {
+    Page = pages[`${page}Page`] ?? 'div';
+    if (layout !== null) {
+      Layout =
+        layouts[`${layout}Layout`] ?? layouts['DefaultLayout'] ?? Fragment;
+    }
+  }
   useEffect(() => {
     console.log({ Layout, Page });
   }, []);
   return (
     <Fragment>
       <Layout>
-        <Page title={title} />
+        <Page />
       </Layout>
     </Fragment>
   );

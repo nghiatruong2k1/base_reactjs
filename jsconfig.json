@@ -5,8 +5,8 @@
     "paths": {
       "~/*": ["src/*"]
     },
-    "lib": [
-      "ES2021.String"
-    ]
+    "lib": ["ES2021.String"],
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true
   }
 }

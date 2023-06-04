@@ -1,4 +1,6 @@
 export class NewArray extends Array {
+  readonly addPrivate: Function;
+  readonly addPrivates: Function;
   constructor(_props, _private) {
     super();
     const _this = this;

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '~/App';
 import reportWebVitals from './reportWebVitals';
-import Router from './Router';
+
 import Fonts from './assets/fonts';
 import States from './states';
 import Styles from './assets/styles';
@@ -11,9 +11,7 @@ root.render(
   <Fonts>
     <States>
       <Styles>
-        <App>
-          <Router />
-        </App>
+        <App/>
       </Styles>
     </States>
   </Fonts>,

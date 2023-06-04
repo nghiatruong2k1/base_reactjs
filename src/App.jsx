@@ -1,7 +1,8 @@
 import { memo, Fragment, useEffect } from 'react';
 import { useSelectorGlobal } from '~/states/init';
 import { currentTitleSelector } from '~/hooks/useTitle/selectors';
-function AppComponent({ children }) {
+import Router from './Router';
+function AppComponent() {
   useEffect(() => {
     console.log(process.env);
   }, []);
@@ -13,6 +14,10 @@ function AppComponent({ children }) {
       (title !== '' ? title + ' | ' : '') + process.env.REACT_APP_WEBSITE_NAME
     }`;
   }, [title]);
-  return <Fragment>{children}</Fragment>;
+  return (
+    <Fragment>
+      <Router />
+    </Fragment>
+  );
 }
 export default memo(AppComponent);

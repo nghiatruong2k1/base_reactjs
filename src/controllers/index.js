@@ -1,5 +1,5 @@
-import { RouteConfig } from '~/configs/Route';
-import { NewObject } from '~/configs/NewObject';
+import { RouteConfig } from '~/configs/Route.ts';
+import { NewObject } from '~/configs/NewObject.ts';
 
 export const Controller = new NewObject({
   home: new RouteConfig('', 'Home'),

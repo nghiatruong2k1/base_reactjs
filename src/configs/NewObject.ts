@@ -1,4 +1,6 @@
 export class NewObject extends Object {
+  readonly addPrivate: Function;
+  readonly addPrivates: Function;
   constructor(_public, _private) {
     super(_public);
     const _this = this;
@@ -58,7 +60,7 @@ export class NewObject extends Object {
       value: function (_props) {
         if (typeof _props === 'object') {
           Object.keys(_props).forEach((key) => {
-            this.addPrivate(key, _props[key]);
+            _this.addPrivate(key, _props[key]);
           });
         }
       },
