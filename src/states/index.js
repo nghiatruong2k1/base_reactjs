@@ -1,21 +1,2 @@
-import { memo } from 'react';
-import { Provider as ReduxProvider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { GlobalContext } from './init';
-import { sliceReducerTitle } from '~/hooks/useTitle/reducer';
-import { sliceReducerLoading } from '~/hooks/useLoading/reducer';
-const GlobalStates = configureStore({
-  reducer: {
-    titles: sliceReducerTitle.reducer,
-    loading: sliceReducerLoading.reducer,
-  },
-});
-
-function GlobalStatesComponent({ children }) {
-  return (
-    <ReduxProvider context={GlobalContext} store={GlobalStates}>
-      {children}
-    </ReduxProvider>
-  );
-}
-export default memo(GlobalStatesComponent);
+export * from './init.ts';
+export { default } from './states.tsx';

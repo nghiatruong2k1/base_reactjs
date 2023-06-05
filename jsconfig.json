@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
     },
-    "lib": ["ES2021.String"],
+    "lib": ["ES2021.String","dom"],
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "include": ["**/*.tsx", "**/*.ts", "**/*.jsx", "**/*.js"]
 }

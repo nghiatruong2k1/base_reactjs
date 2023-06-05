@@ -1,9 +1,21 @@
-.default{
+.default {
+  --success-text: #00b517;
+  --success-bg: #d9f9dd;
+  --success-bg-end: #80fd90;
 
+  --info-text: #00aefd;
+  --info-bg: #e5f6fd;
+  --info-bg-end: #6bcefc;
+
+  --warning-text: rgb(243 104 5);
+  --warning-bg: rgb(255, 244, 229);
+  --warning-bg-end: rgb(252, 193, 152);
+
+  --error-text: rgb(255 4 0);
+  --error-bg: rgb(253, 237, 237);
+  --error-bg-end: rgb(248, 132, 131);
 }
-.light{
-
+.light {
 }
-.dark{
-
+.dark {
 }

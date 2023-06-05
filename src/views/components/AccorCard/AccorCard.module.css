@@ -1,0 +1,10 @@
+.summary {
+  padding: 0.1em !important;
+  margin: 0 !important;
+  align-items: center !important;
+  gap: 2px !important;
+}
+.title {
+  flex: 1;
+}
+

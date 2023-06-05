@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatchGlobal } from '~/states/init';
-import { sliceReducerTitle } from '~/hooks/useTitle/reducer';
+import { useDispatchGlobal } from '~/states';
+import { sliceReducerTitle } from '~/hooks/useTitle/reducer.ts';
 export default function useGlobalTitle(params = []) {
   const dispath = useDispatchGlobal();
   return useCallback((title) => {

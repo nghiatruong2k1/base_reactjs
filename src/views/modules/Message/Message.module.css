@@ -1,0 +1,12 @@
+.content {
+  width: 100% !important;
+  max-width: 22em !important;
+  min-width: 22em !important;
+}
+.details {
+  word-break: break-word;
+}
+
+.close {
+  color: red !important;
+}

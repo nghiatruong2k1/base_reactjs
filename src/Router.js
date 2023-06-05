@@ -46,12 +46,23 @@ function RenderRoute(props, key) {
 
 function RouterComponent() {
   const routers = useMemo(() => {
-    console.log(Controller);
-    return createBrowserRouter(
-      createRoutesFromElements(
-        Controller.map((route, index) => RenderRoute(route, index)),
-      ),
-    );
+    console.log(Controller, process.env);
+    if (process.env.REACT_APP_MODE === 'Update') {
+      return createBrowserRouter(
+        createRoutesFromElements(
+          <Route
+            path="*"
+            loader={pages.UpdateLoader}
+            element={<pages.UpdatePage />}
+          />,
+        ),
+      );
+    } else {
+      const routes = Controller.map((route, index) =>
+        RenderRoute(route, index),
+      );
+      return createBrowserRouter(createRoutesFromElements(routes));
+    }
   }, []);
   return <RouterProvider router={routers} />;
 }

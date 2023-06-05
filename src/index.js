@@ -8,13 +8,13 @@ import States from './states';
 import Styles from './assets/styles';
 export const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Fonts>
-    <States>
+  <States>
+    <Fonts>
       <Styles>
         <App/>
       </Styles>
-    </States>
-  </Fonts>,
+    </Fonts>
+  </States>,
 );
 
 // If you want to start measuring performance in your app, pass a function
