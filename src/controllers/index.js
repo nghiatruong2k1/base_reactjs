@@ -3,12 +3,11 @@ import { NewObject } from '~/configs/NewObject.ts';
 
 export const Controller = new NewObject({
   home: new RouteConfig('', 'Home'),
-  product: new RouteConfig('product', null, null, {
+  auth: new RouteConfig('auth', null, null, {
     children: {
-      detail: new RouteConfig(':alias', {
-        title: 'Product Detail',
-        page: 'ProductDetail',
-      }),
+      signin: new RouteConfig('singin', 'Signin'),
+      signup:new RouteConfig('singsignupin', 'Signup'),
+      "forget-password": new RouteConfig('forget-password', 'ForgetPassword'),
     },
   }),
   notfound: new RouteConfig('*', 'NotFound', null),
