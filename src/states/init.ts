@@ -13,9 +13,6 @@ const reducer = {
 };
 export const GlobalStates = configureStore({ reducer });
 export type GlobalStateType = ReturnType<typeof GlobalStates.getState>;
-// export const GlobalContext = createContext<ReactReduxContextValue<GlobalStateType>>(
-//   GlobalStates.getState(),
-// );
 export const GlobalContext = createContext<
   ReactReduxContextValue<GlobalStateType>
 >(null as any);

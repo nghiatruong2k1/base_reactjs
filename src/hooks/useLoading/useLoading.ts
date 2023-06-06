@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import { sliceReducerLoading } from './reducer.ts';
+import { sliceReducerLoading } from './reducer';
 
 import { isLoadingSelector } from './selectors';
 export default function useLoading() {

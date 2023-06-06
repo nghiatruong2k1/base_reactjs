@@ -5,9 +5,10 @@
     "paths": {
       "~/*": ["src/*"]
     },
-    "lib": ["ES2021.String","dom"],
     "allowImportingTsExtensions": true,
-    "allowSyntheticDefaultImports": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "lib": ["ES2021.String", "dom"]
   },
-  "include": ["**/*.tsx", "**/*.ts", "**/*.jsx", "**/*.js"]
+  "include": ["src"]
 }

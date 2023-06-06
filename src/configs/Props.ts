@@ -33,7 +33,22 @@ export class Property<T> {
   }
 }
 
-export class EmailProp extends Property<string> {
+export function Properties<T extends Property<any>>(attrs: Record<string, T>) {
+  type EntityType = {
+    [P in keyof typeof attrs]?: (typeof attrs)[P]['defaultValue'];
+  };
+  class Entity implements EntityType {
+    constructor(props: EntityType) {
+      const _this = this;
+      Object.keys(attrs).forEach((key) => {
+        _this[key] = props[key] || attrs[key].defaultValue;
+      });
+    }
+  }
+  return [Entity, attrs, typeof Entity];
+}
+
+export class EmailProp extends Property<string | null> {
   constructor(defaultValue: string, displayName?: string, validate?: Function) {
     function _getter(value) {}
     function _setter(value) {}
@@ -43,7 +58,7 @@ export class EmailProp extends Property<string> {
     super(defaultValue, displayName, _validate, _getter, _setter);
   }
 }
-export class PhoneProp extends Property<string> {
+export class PhoneProp extends Property<string | null> {
   constructor(defaultValue: string, displayName?: string, validate?: Function) {
     function _getter(value) {}
     function _setter(value) {}
@@ -53,7 +68,7 @@ export class PhoneProp extends Property<string> {
     super(defaultValue, displayName, _validate, _getter, _setter);
   }
 }
-export class PasswordProp extends Property<string> {
+export class PasswordProp extends Property<string | null> {
   constructor(defaultValue: string, displayName?: string, validate?: Function) {
     function _getter(value) {}
     function _setter(value) {}
@@ -63,7 +78,7 @@ export class PasswordProp extends Property<string> {
     super(defaultValue, displayName, _validate, _getter, _setter);
   }
 }
-export class StringProp extends Property<string> {
+export class StringProp extends Property<string | null> {
   constructor(defaultValue: string, displayName?: string, validate?: Function) {
     function _getter(value) {}
     function _setter(value) {}
@@ -73,7 +88,7 @@ export class StringProp extends Property<string> {
     super(defaultValue, displayName, _validate, _getter, _setter);
   }
 }
-export class NumberProp extends Property<number> {
+export class NumberProp extends Property<number | null> {
   constructor(defaultValue: number, displayName?: string, validate?: Function) {
     function _getter(value) {}
     function _setter(value) {}
@@ -83,7 +98,7 @@ export class NumberProp extends Property<number> {
     super(defaultValue, displayName, _validate, _getter, _setter);
   }
 }
-export class BooleanProp extends Property<boolean> {
+export class BooleanProp extends Property<boolean | false> {
   constructor(
     defaultValue: boolean,
     displayName?: string,

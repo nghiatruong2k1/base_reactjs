@@ -12,14 +12,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AccorCardComponent } from '~/views/components/AccorCard';
 import { IconButton } from '@mui/material';
 import { TypeFace, useType } from '~/assets/types';
-export interface Props extends CustomContentProps {
+export interface CustomMessageProps extends CustomContentProps {
   id: SnackbarKey | -1;
   variant: TypeFace;
   message: SnackbarMessage | '';
 }
 
 function CustomMessageContent(
-  { id, message, variant, style, iconVariant, persist }: Props,
+  { id, message, variant, style, iconVariant, persist }: CustomMessageProps,
   ref,
 ) {
   const { closeSnackbar } = useSnackbar();

@@ -1,10 +1,10 @@
-import { memo, ReactNode, useRef, useCallback } from 'react';
+import { memo, ReactNode, useRef, forwardRef, useMemo } from 'react';
 import { SnackbarProvider } from 'notistack';
 import styles from './Message.module.css';
-import CustomMessageContent from './Message.content.tsx';
-import { useMemo } from 'react';
+import CustomMessageContent, {
+  CustomMessageProps,
+} from './Message.content.tsx';
 import { TypeFace, typeToast } from '~/assets/types';
-import { forwardRef } from 'react';
 interface Props {
   children: ReactNode | ReactNode[];
 }
@@ -12,7 +12,7 @@ function CustomMessageProvider({ children }: Props) {
   const SnackRef = useRef();
   const Components = useMemo(() => {
     return Object.keys(typeToast).reduce((rs, type: TypeFace) => {
-      rs[type] = forwardRef((props,ref) => {
+      rs[type] = forwardRef((props: CustomMessageProps, ref) => {
         return <CustomMessageContent {...props} ref={ref} variant={type} />;
       });
       return rs;
