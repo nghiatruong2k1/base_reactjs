@@ -8,7 +8,7 @@ import {
 import { Fragment, memo, useEffect, useMemo } from 'react';
 import * as pages from '~/views/pages';
 import * as layouts from '~/views/layouts';
-import { Controller } from './controllers';
+import { Controller, TestController, UpdateController } from './controllers';
 
 const Element = memo(({ title, page, layout }) => {
   let Page = Outlet;
@@ -43,25 +43,24 @@ function RenderRoute(props, key) {
     </Route>
   );
 }
-
+function createRouters(controller) {
+  return controller.map((route, index) => RenderRoute(route, index));
+}
 function RouterComponent() {
   const routers = useMemo(() => {
     console.log(Controller, process.env);
-    if (process.env.REACT_APP_MODE === 'Update') {
+    if (process.env.REACT_APP_MODE === 'Test') {
       return createBrowserRouter(
-        createRoutesFromElements(
-          <Route
-            path="*"
-            loader={pages.UpdateLoader}
-            element={<pages.UpdatePage />}
-          />,
-        ),
+        createRoutesFromElements(createRouters(TestController)),
+      );
+    } else if (process.env.REACT_APP_MODE === 'Update') {
+      return createBrowserRouter(
+        createRoutesFromElements(createRouters(UpdateController)),
       );
     } else {
-      const routes = Controller.map((route, index) =>
-        RenderRoute(route, index),
+      return createBrowserRouter(
+        createRoutesFromElements(createRouters(Controller)),
       );
-      return createBrowserRouter(createRoutesFromElements(routes));
     }
   }, []);
   return <RouterProvider router={routers} />;

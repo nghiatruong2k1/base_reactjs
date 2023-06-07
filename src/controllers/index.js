@@ -12,3 +12,9 @@ export const Controller = new NewObject({
   }),
   notfound: new RouteConfig('*', 'NotFound', null),
 });
+export const UpdateController = new NewObject({
+  update: new RouteConfig('*', 'Update', null),
+});
+export const TestController = new NewObject({
+  component: new RouteConfig('*', 'Component', null),
+});
