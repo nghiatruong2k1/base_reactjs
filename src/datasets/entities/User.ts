@@ -3,7 +3,6 @@ import {
   PhoneProp,
   PasswordProp,
   StringProp,
-  Properties,
 } from '~/configs/Props.ts';
 
 export const UserEntityProps = {
@@ -20,7 +19,7 @@ export class UserEntity implements UserEntityType {
   constructor(props: UserEntityType | null) {
     const _this = this;
     Object.keys(UserEntityProps).forEach((key) => {
-      _this[key] = props && props[key] || UserEntityProps[key].defaultValue;
+      _this[key] = (props && props[key]) ?? UserEntityProps[key].defaultValue;
     });
   }
 }

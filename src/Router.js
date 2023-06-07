@@ -10,7 +10,7 @@ import * as pages from '~/views/pages';
 import * as layouts from '~/views/layouts';
 import { Controller, TestController, UpdateController } from './controllers';
 
-const Element = memo(({ title, page, layout }) => {
+const Element = memo(({ page, layout }) => {
   let Page = Outlet;
   let Layout = Fragment;
   if (page !== null) {

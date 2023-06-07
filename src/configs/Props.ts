@@ -33,20 +33,20 @@ export class Property<T> {
   }
 }
 
-export function Properties<T extends Property<any>>(attrs: Record<string, T>) {
-  type EntityType = {
-    [P in keyof typeof attrs]?: (typeof attrs)[P]['defaultValue'];
-  };
-  class Entity implements EntityType {
-    constructor(props: EntityType) {
-      const _this = this;
-      Object.keys(attrs).forEach((key) => {
-        _this[key] = props[key] || attrs[key].defaultValue;
-      });
-    }
-  }
-  return [Entity, attrs, typeof Entity];
-}
+// export function Properties<T extends Property<any>>(attrs: Record<string, T>) {
+//   type EntityType = {
+//     [P in keyof typeof attrs]?: (typeof attrs)[P]['defaultValue'];
+//   };
+//   class Entity implements EntityType {
+//     constructor(props: EntityType) {
+//       const _this = this;
+//       Object.keys(attrs).forEach((key) => {
+//         _this[key] = props[key] || attrs[key].defaultValue;
+//       });
+//     }
+//   }
+//   return [Entity, attrs, typeof Entity];
+// }
 
 export class EmailProp extends Property<string | null> {
   constructor(defaultValue: string, displayName?: string, validate?: Function) {

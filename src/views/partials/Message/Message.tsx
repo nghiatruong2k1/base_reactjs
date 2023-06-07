@@ -11,9 +11,9 @@ export interface Props {
 function MessageParial({ children }: Props) {
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
-    return Object.keys(typeToast).forEach((type: TypeFace) => {
-      enqueueSnackbar(`test: ${type}`, { variant: type });
-    });
+    // return Object.keys(typeToast).forEach((type: TypeFace) => {
+    //   enqueueSnackbar(`test: ${type}`, { variant: type });
+    // });
   }, []);
   return <Fragment>{children}</Fragment>;
 }

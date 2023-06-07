@@ -10,7 +10,7 @@ export default function useLoading() {
   const title = useMemo(() => {
     return isLoadingSelector(loading);
   }, [loading]);
-  const handleTitle = useCallback((title: string | number | undefined) => {
+  const handleTitle = useCallback(() => {
     dispathLoading(sliceReducerLoading.actions.toggleLoading(true));
     return () => {
       dispathLoading(sliceReducerLoading.actions.toggleLoading(false));

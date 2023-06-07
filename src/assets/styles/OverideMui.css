@@ -7,34 +7,34 @@
     height: 1.2em !important; */
 }
 
-.MuiPaper-root{
+.MuiAccordion-root{
     background-image: linear-gradient(135deg,var(--paper-bg),var(--paper-bg-end)) !important;
 }
-.MuiPaper-root .MuiAccordionSummary-content{
+.MuiAccordion-root .MuiAccordionSummary-content{
     color:var(--paper-text) !important;
 }
-.MuiPaper-root,
-.MuiPaper-root.default {
+.MuiAccordion-root,
+.MuiAccordion-root.default {
     --paper-bg:var(--content-bg);
     --paper-bg-end:var(--content-bg-end);
     --paper-text:var(--content-text);
 }
-.MuiPaper-root.error {
+.MuiAccordion-root.error {
     --paper-bg:var(--error-bg);
     --paper-bg-end:var(--error-bg-end);
     --paper-text:var(--error-text);
 }
-.MuiPaper-root.success {
+.MuiAccordion-root.success {
     --paper-bg:var(--success-bg);
     --paper-bg-end:var(--success-bg-end);
     --paper-text:var(--success-text);
 }
-.MuiPaper-root.warning {
+.MuiAccordion-root.warning {
     --paper-bg:var(--warning-bg);
     --paper-bg-end:var(--warning-bg-end);
     --paper-text:var(--warning-text);
 }
-.MuiPaper-root.info {
+.MuiAccordion-root.info {
     --paper-bg:var(--info-bg);
     --paper-bg-end:var(--info-bg-end);
     --paper-text:var(--info-text);

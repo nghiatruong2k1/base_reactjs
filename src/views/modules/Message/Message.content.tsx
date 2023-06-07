@@ -30,7 +30,7 @@ function CustomMessageContent(
   return (
     <SnackbarContent ref={ref}>
       <AccorCardComponent
-        classes={{ root: clsx(styles.content, variant) }}
+        classes={{ root: clsx(styles.root, variant) }}
         icon={icon}
         title={title}
         option={

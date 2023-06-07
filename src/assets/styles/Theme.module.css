@@ -16,6 +16,9 @@
   --error-bg-end: rgb(248, 132, 131);
 }
 .light {
+  --content-text: #000000;
+  --content-bg: #f8f8f8;
+  --content-bg-end: #ebebeb;
 }
 .dark {
 }

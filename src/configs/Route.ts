@@ -6,10 +6,10 @@ interface OptionFace {
 }
 
 export class RouteConfig extends NewObject {
-  path: string | '';
-  page: string | null;
-  layout: string | null;
-  parent: RouteConfig | null;
+  path: string | '' = '';
+  page: string | null = null;
+  layout: string | null = null;
+  parent: RouteConfig | null = null;
   getFullPath: Function;
 
   constructor(

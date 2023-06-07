@@ -24,7 +24,7 @@ export interface Props {
   children?: ReactNode | undefined;
   option?: ReactNode | undefined;
   title?: string | ReactNode | undefined;
-  classes?: Classes;
+  classes?: Classes | undefined;
   icon?: ReactNode | undefined;
   opened?: boolean | true;
   variant?: TypeFace;
@@ -34,14 +34,17 @@ function AccorCardComponent({
   opened = true,
   title,
   icon,
-  classes,
+  classes = {},
   children,
   option,
-  variant
+  variant = 'default',
 }: Props) {
   const [isOpen, { toggle }] = useDisclosure(opened);
   return (
-    <Accordion expanded={isOpen} className={clsx(styles.root, classes.root, variant)}>
+    <Accordion
+      expanded={isOpen}
+      className={clsx(styles.root, classes.root, variant)}
+    >
       <AccordionSummary
         classes={{ content: clsx(styles.summary, classes.summary) }}
       >

@@ -1,1 +1,1 @@
-export { default } from './Chart';
+export { default as ChartComponent} from './Chart.tsx';
