@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 export const sliceReducerTitle = createSlice({
   name: 'titles',
-  initialState: Array<string>(),
+  initialState: Array<string | number>(),
   reducers: {
-    addTitle: (state, { payload }) => {
+    addTitle: (state, { payload }:PayloadAction<string | number>) => {
       state.unshift(payload);
     },
     removeTitle: (state) => {

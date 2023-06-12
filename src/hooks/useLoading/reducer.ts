@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 export const sliceReducerLoading = createSlice({
   name: 'loading',
   initialState: 0,
   reducers: {
-    toggleLoading: (state, { payload }) => {
+    toggleLoading: (state,{payload}:PayloadAction<boolean>) => {
       if (payload) {
-        state += 1;
+        return state + 1;
       } else {
-        state -= 1;
+        return state - 1;
       }
     },
   },

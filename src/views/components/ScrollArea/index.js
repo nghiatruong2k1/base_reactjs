@@ -1,0 +1,1 @@
+export { default as ScrollAreaComponent} from './ScrollArea.tsx';
