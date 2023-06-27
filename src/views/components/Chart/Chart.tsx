@@ -13,8 +13,8 @@ import {
   Tooltip,
   ChartOptions,
   ChartDataset,
-  Point,
 } from 'chart.js';
+import { DatasetPointFace } from './init.ts';
 
 Chart.register(
   Decimation,
@@ -27,33 +27,8 @@ Chart.register(
   Title,
   Tooltip,
 );
-interface ParsingFace {
-  yAxisKey?: string;
-  xAxisKey?: string;
-}
-export interface DatasetPointFace {
-  backgroundColor?: string | CanvasGradient | CanvasPattern;
-  borderColor?: string | CanvasGradient | CanvasPattern;
-  fill?: boolean;
-  label?: string | number;
-  parsing?: ParsingFace;
-  data?: Array<any>;
-}
-export class DatasetPoint implements DatasetPointFace {
-  backgroundColor = 'black';
-  borderColor = 'black';
-  fill = true;
-  label = '';
-  parsing = {};
-  data = [];
-  constructor(props: DatasetPointFace) {
-    const _this = this;
-    console.log(_this, props);
-    Object.keys(props).forEach((key) => {
-      _this[key] = props[key];
-    });
-  }
-}
+
+
 
 interface Props {
   title: string;
@@ -100,7 +75,6 @@ function ChartComponent({ datasets = [], title = '' }: Props) {
       },
     };
   }, [title]);
-  console.log(_datasets, _options);
   return (
     <Line ref={thisRef} data={{ datasets: _datasets }} options={_options} />
   );

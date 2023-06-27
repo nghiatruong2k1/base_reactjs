@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import { sliceReducerTitle } from './reducer';
+import { sliceReducerTitle } from './reducers';
 
 import { currentTitleSelector } from './selectors';
 export default function useTitle() {

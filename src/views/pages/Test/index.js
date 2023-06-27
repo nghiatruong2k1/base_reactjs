@@ -1,1 +1,1 @@
-export { default as TestPage} from './Test.tsx';
+export { default as TestPage} from './Test.page.tsx';

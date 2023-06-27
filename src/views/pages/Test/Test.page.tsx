@@ -1,25 +1,32 @@
-import { useEffect } from 'react';
-
-import styles from './Test.module.css';
-import { Container } from '@mui/material';
-import { AccorCardComponent } from '~/views/components/AccorCard';
-import { TypeFace, typeToast } from '~/assets/types';
-
-import { ChartComponent } from '~/views/components/Chart/index.js';
-import { DatasetPoint } from '~/views/components/Chart/Chart.tsx';
+import { useCallback } from 'react';
 import { useSnackbar } from 'notistack';
+import { Button, Container } from '@mui/material';
+
+import { TypeFace, typeToast } from '~/assets/types';
 import TestItemComponent from './Test.item.tsx';
+import { AccorCardComponent } from '~/views/components/AccorCard';
+import { ChartComponent, DatasetPoint } from '~/views/components/Chart';
+import styles from './Test.module.css';
 export interface Props {}
 
 export default function Test({}: Props) {
   const { enqueueSnackbar } = useSnackbar();
-  useEffect(() => {
-    return Object.keys(typeToast).forEach((type: TypeFace) => {
-      enqueueSnackbar(`test: ${type}`, { variant: type });
+  const handleClick = useCallback((e) => {
+    enqueueSnackbar(`test: ${e.target.dataset.type}`, {
+      variant: e.target.dataset.type,
     });
   }, []);
   return (
     <Container component={'main'}>
+      <TestItemComponent title={'Snackbar'}>
+        {Object.keys(typeToast).map((type: TypeFace) => {
+          return (
+            <Button data-type={type} onClick={handleClick} className={`-${type}`}>
+              {type}
+            </Button>
+          );
+        })}
+      </TestItemComponent>
       <TestItemComponent title={'AccorCardComponent'}>
         {Object.keys(typeToast).map((type: TypeFace) => {
           return (

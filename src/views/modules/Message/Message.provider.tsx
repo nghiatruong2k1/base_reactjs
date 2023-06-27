@@ -24,11 +24,11 @@ function CustomMessageProvider({ children }: Props) {
       maxSnack={5}
       className={styles.container}
       anchorOrigin={{
-        vertical: 'top',
+        vertical: 'bottom',
         horizontal: 'left',
       }}
       preventDuplicate
-      autoHideDuration={1000000}
+      autoHideDuration={1000}
       Components={Components}
     >
       {children}
