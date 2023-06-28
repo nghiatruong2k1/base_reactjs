@@ -5,9 +5,18 @@
     "paths": {
       "~/*": ["src/*"]
     },
-    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noEmit": true,
     "lib": ["ES2021.String", "dom"]
   },
   "include": ["src"]

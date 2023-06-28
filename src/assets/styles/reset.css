@@ -94,11 +94,14 @@ html {
 }
 body {
   line-height: 1.5;
-  background-color: transparent !important;
   text-rendering: optimizeSpeed;
   font-family: var(--font-text) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  color: var(--layout-text);
+  background-color: var(--layout-bg);
+  transition: color 0.25s, background-color 0.25s, font-size 0.25s;
 }
 #root {
   position: fixed;
@@ -319,3 +322,6 @@ svg[class*='fa-'] {
   height: 1em;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

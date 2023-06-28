@@ -28,7 +28,7 @@ function CustomMessageProvider({ children }: Props) {
         horizontal: 'left',
       }}
       preventDuplicate
-      autoHideDuration={1000}
+      autoHideDuration={5000}
       Components={Components}
     >
       {children}

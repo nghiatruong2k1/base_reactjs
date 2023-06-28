@@ -9,6 +9,16 @@
             "name": "Run npm start",
             "request": "launch",
             "type": "node-terminal"
+        },{
+            "command": "npm lint",
+            "name": "Run npm lint",
+            "request": "launch",
+            "type": "node-terminal"
+        },{
+            "command": "npm prettier",
+            "name": "Run npm prettier",
+            "request": "launch",
+            "type": "node-terminal"
         }
         
     ]

@@ -11,7 +11,13 @@ library.add(fas, far);
 function StylesComponent({ children }) {
   const current = useSelectorGlobal((state: GlobalStateType) => state.theme);
   useEffect(() => {
-    document.body.classList.add(themes.default, themes[current || 'light']);
+    document.body.classList.add(themes.default);
+  }, []);
+  useEffect(() => {
+    document.body.classList.add(themes[current]);
+    return ()=>{
+      document.body.classList.remove(themes[current]);
+    }
   }, [current]);
   return <>{children}</>;
 }

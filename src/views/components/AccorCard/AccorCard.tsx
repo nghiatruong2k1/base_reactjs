@@ -27,7 +27,7 @@ export interface Props {
   classes?: Classes | undefined;
   icon?: ReactNode | undefined;
   opened?: boolean | true;
-  variant?: TypeFace;
+  variant?: string | TypeFace;
 }
 
 function AccorCardComponent({

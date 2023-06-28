@@ -16,9 +16,20 @@
   --error-bg-end: rgb(248, 132, 131);
 }
 .light {
+  --layout-text: #000000;
+  --layout-bg: #fdfdfd;
+  --layout-bg-end: #ebebeb;
+
   --content-text: #000000;
   --content-bg: #f8f8f8;
   --content-bg-end: #ebebeb;
 }
 .dark {
+  --layout-text: #f7f7f7;
+  --layout-bg: #1d1d1d;
+  --layout-bg-end: #1d1d1d;
+
+  --content-text: #f7f7f7;
+  --content-bg: #121212;
+  --content-bg-end: #121212;
 }
