@@ -1,5 +1,6 @@
 import { memo, Fragment, useEffect } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { GetAction } from '~/configs/Route.ts';
 import { Controller } from '~/controllers';
 import useGlobalTitle from '~/hooks/useGlobalTitle';
 function NotFoundComponent(props) {
@@ -12,10 +13,10 @@ function NotFoundComponent(props) {
     <Fragment>
       NotFound page
       <div>
-        <Link to={Controller.home.getAction()}>Trang chủ</Link>
+        <Link to={GetAction(Controller['Home'])}>Trang chủ</Link>
       </div>
       <div>
-        <Link to={Controller.notfound.getAction()}>Not Found</Link>
+        <Link to={GetAction(Controller["NotFound"])}>Not Found</Link>
       </div>
     </Fragment>
   );

@@ -11,9 +11,9 @@ export interface Props {
   src: string;
   alt?: string;
   classes?: Classes;
-  fit: 'fill' | 'cover' | 'contain';
-  height: number | string | undefined;
-  width: number | string | undefined;
+  fit?: 'fill' | 'cover' | 'contain';
+  height?: number | string | undefined;
+  width?: number | string | undefined;
 }
 
 function ImageComponent({

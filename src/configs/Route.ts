@@ -1,15 +1,16 @@
 import { NewObject } from './NewObject.ts';
-
+import { generatePath } from 'react-router-dom';
 interface OptionFace {
   children: Array<RouteConfig> | [];
   params: Object | {};
 }
 
 export class RouteConfig extends NewObject {
-  path: string | '' = '';
+  path: string = '';
   page: string | null = null;
   layout: string | null = null;
   parent: RouteConfig | null = null;
+  params: Object = {};
   getFullPath: Function;
 
   constructor(
@@ -22,7 +23,6 @@ export class RouteConfig extends NewObject {
     },
   ) {
     const { children, params } = option;
-    const regex = /:[a-zA-Z]{1,}/g;
     const parent = null;
     function getFullPath() {
       if (_this.parent) {
@@ -31,23 +31,6 @@ export class RouteConfig extends NewObject {
       } else {
         return path || '';
       }
-    }
-    function getAction(values) {
-      if (typeof path === 'string' && path !== '*') {
-        let str = `/${_this.getFullPath()}`;
-        const args = str.match(regex);
-        if (args && Array.isArray(args)) {
-          args.forEach((arg) => {
-            const key = arg.replace(':', '');
-            str = str.replaceAll(
-              arg,
-              (values && values[key]) || params?.[key] || '',
-            );
-          });
-        }
-        return str;
-      }
-      return '/404';
     }
     super({}, {});
     const _this = this;
@@ -58,7 +41,6 @@ export class RouteConfig extends NewObject {
       layout,
       parent,
       getFullPath,
-      getAction,
     });
     if (children) {
       Object.keys(children).forEach((key) => {
@@ -67,4 +49,11 @@ export class RouteConfig extends NewObject {
       });
     }
   }
+}
+export function GetAction(action: RouteConfig, params: Object = {}) {
+  if (action && typeof action.path === 'string' && action.path !== '*') {
+    let str = `/${action.getFullPath()}`;
+    return generatePath(str, { ...action.params, ...params });
+  }
+  return '/404';
 }

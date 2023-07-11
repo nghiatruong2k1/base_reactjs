@@ -7,14 +7,14 @@ export default function useLoading() {
     sliceReducerLoading.reducer,
     sliceReducerLoading.getInitialState(),
   );
-  const title = useMemo(() => {
+  const isLoading = useMemo(() => {
     return isLoadingSelector(loading);
   }, [loading]);
-  const handleTitle = useCallback(() => {
+  const handleLoading = useCallback(() => {
     dispathLoading(sliceReducerLoading.actions.toggleLoading(true));
     return () => {
       dispathLoading(sliceReducerLoading.actions.toggleLoading(false));
     };
   }, []);
-  return [title, handleTitle];
+  return [isLoading, handleLoading];
 }

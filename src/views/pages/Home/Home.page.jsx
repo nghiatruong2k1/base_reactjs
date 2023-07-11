@@ -1,6 +1,5 @@
 import { memo, Fragment, useEffect } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
-import { Controller } from '~/controllers';
+import { useLoaderData } from 'react-router-dom';
 import useGlobalTitle from '~/hooks/useGlobalTitle';
 function HomeComponent(props) {
   const { title } = useLoaderData();
@@ -11,12 +10,6 @@ function HomeComponent(props) {
   return (
     <Fragment>
       Home page
-      <div>
-        <Link to={Controller.home.getAction()}>Trang chủ</Link>
-      </div>
-      <div>
-        <Link to={Controller.notfound.getAction()}>Not Found</Link>
-      </div>
     </Fragment>
   );
 }
