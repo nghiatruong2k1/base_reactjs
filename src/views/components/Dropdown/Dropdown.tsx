@@ -1,55 +1,81 @@
-import { JSXElementConstructor, ReactNode, memo } from 'react';
+import {
+  JSXElementConstructor,
+  ReactNode,
+  memo,
+  useMemo,
+  useCallback,
+  useRef,
+} from 'react';
+import { ClickAwayListener, Menu } from '@mui/material';
+import { useDisclosure } from '@mantine/hooks';
+import clsx from 'clsx';
 //---------//
 import styles from './Dropdown.module.css';
-import { Button, ClickAwayListener, Menu, MenuItem } from '@mui/material';
-import { useDisclosure } from '@mantine/hooks';
-import { useMemo } from 'react';
-import { useRef } from 'react';
-import clsx from 'clsx';
+import {
+  ButtonComponent,
+  ButtonComponentProps,
+} from '~/views/components/Button';
 export interface Classes {
   root?: string | '';
   paper?: string | '';
   list?: string | '';
-  item?: string | '';
 }
-export interface Props {
+export interface Props extends ButtonComponentProps {
+  id: string;
   children?: ReactNode | ReactNode[] | undefined;
   opened?: boolean;
-  button: JSXElementConstructor<any>;
+  button: ReactNode;
+  buttonComponent?: JSXElementConstructor<any>;
   classes?: Classes;
 }
 
 function DropdownComponent({
+  id,
   children,
   opened = false,
   classes = {},
-  button,
+  button = 'On Click',
+  buttonComponent = ButtonComponent,
+  ...props
 }: Props) {
   const [isOpen, { toggle, close }] = useDisclosure(opened);
   const buttonRef = useRef();
-  const ButtonComponent = useMemo(() => {
-    return button ?? Button;
-  }, [button]);
+  const BtnComponent = useMemo(() => {
+    return buttonComponent;
+  }, [buttonComponent]);
+  const handleClose = useCallback(
+    (e) => {
+      if (e.target?.dataset?.close == `#${id}`) {
+        close();
+      }
+    },
+    [id],
+  );
   return (
     <>
-      <ButtonComponent ref={buttonRef} onClick={toggle} />
+      <BtnComponent
+        {...props}
+        data-target={`#${id}`}
+        ref={buttonRef}
+        onClick={toggle}
+      >
+        {button}
+      </BtnComponent>
       <Menu
-        open={buttonRef.current && isOpen || false}
+        id={id}
+        open={(buttonRef.current && isOpen) || false}
         anchorEl={buttonRef.current}
         disablePortal={true}
         disableScrollLock={true}
-        hideBackdrop={true}
         onClose={close}
-        onClick={close}
+        onClick={handleClose}
         classes={{
           root: clsx(styles.root, classes.root),
           paper: clsx(styles.paper, classes.paper),
           list: clsx(styles.list, classes.list),
         }}
       >
-        <ClickAwayListener onClickAway={close}>
-          <>{children}</>
-        </ClickAwayListener>
+        {children}
       </Menu>
     </>
   );

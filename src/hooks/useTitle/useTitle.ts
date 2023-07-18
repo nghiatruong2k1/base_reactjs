@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import { sliceReducerTitle } from './reducers';
+import { sliceReducerTitle, add, remove } from './reducers';
 
 import { currentTitleSelector } from './selectors';
 export default function useTitle() {
@@ -11,9 +11,9 @@ export default function useTitle() {
     return currentTitleSelector(titles);
   }, [titles]);
   const handleTitle = useCallback((title: string | number | undefined) => {
-    dispathTitle(sliceReducerTitle.actions.addTitle(title));
+    dispathTitle(add(title));
     return () => {
-      dispathTitle(sliceReducerTitle.actions.removeTitle());
+      dispathTitle(remove());
     };
   }, []);
   return [title, handleTitle];

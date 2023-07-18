@@ -3,11 +3,13 @@ export const sliceReducerTitle = createSlice({
   name: 'titles',
   initialState: Array<string | number>(),
   reducers: {
-    addTitle: (state, { payload }:PayloadAction<string | number>) => {
+    add: (state, { payload }: PayloadAction<string | number>) => {
       state.unshift(payload);
     },
-    removeTitle: (state) => {
+    remove: (state) => {
       state.shift();
     },
   },
 });
+export const { add, remove } = sliceReducerTitle.actions;
+export default sliceReducerTitle.reducer;

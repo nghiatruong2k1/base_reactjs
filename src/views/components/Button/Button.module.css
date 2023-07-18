@@ -1,0 +1,37 @@
+.default {
+  color: var(--content-text) !important;
+}
+.error {
+  color: var(--error-text) !important;
+}
+.success {
+  color: var(--success-text) !important;
+}
+.warning {
+  color: var(--warning-text) !important;
+}
+.info {
+  color: var(--info-text) !important;
+}
+.text {
+  background-color: transparent !important;
+}
+.outlined {
+  border: 1px solid currentColor !important;
+}
+
+.contained.default {
+  background-color: var(--content-bg) !important;
+}
+.contained.error {
+  background-color: var(--error-bg) !important;
+}
+.contained.success {
+  background-color: var(--success-bg) !important;
+}
+.contained.warning {
+  background-color: var(--warning-bg) !important;
+}
+.contained.info {
+  background-color: var(--info-bg) !important;
+}

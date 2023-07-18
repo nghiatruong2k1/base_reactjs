@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import { sliceReducerLoading } from './reducers';
+import { sliceReducerLoading, toggle } from './reducers';
 
 import { isLoadingSelector } from './selectors';
 export default function useLoading() {
@@ -11,9 +11,9 @@ export default function useLoading() {
     return isLoadingSelector(loading);
   }, [loading]);
   const handleLoading = useCallback(() => {
-    dispathLoading(sliceReducerLoading.actions.toggleLoading(true));
+    dispathLoading(toggle(true));
     return () => {
-      dispathLoading(sliceReducerLoading.actions.toggleLoading(false));
+      dispathLoading(toggle(false));
     };
   }, []);
   return [isLoading, handleLoading];

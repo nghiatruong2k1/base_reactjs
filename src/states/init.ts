@@ -5,13 +5,13 @@ import {
   createSelectorHook,
 } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { sliceReducerTitle } from '~/hooks/useTitle/reducers.ts';
-import { sliceReducerLoading } from '~/hooks/useLoading/reducers.ts';
-import { sliceReducerTheme } from '~/assets/styles/reducers.ts';
+import titles from '~/hooks/useTitle/reducers.ts';
+import loading from '~/hooks/useLoading/reducers.ts';
+import theme from '~/assets/styles/reducers.ts';
 const reducer = {
-  [sliceReducerTitle.name]: sliceReducerTitle.reducer,
-  [sliceReducerLoading.name]: sliceReducerLoading.reducer,
-  [sliceReducerTheme.name]: sliceReducerTheme.reducer,
+  titles,
+  loading,
+  theme,
 };
 export const GlobalStates = configureStore({ reducer });
 export type GlobalStateType = ReturnType<typeof GlobalStates.getState>;

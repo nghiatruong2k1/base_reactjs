@@ -1,4 +1,4 @@
-import { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback,memo } from 'react';
 import styles from './Message.module.css';
 import {
   CustomContentProps,
@@ -47,4 +47,4 @@ function CustomMessageContent(
   );
 }
 
-export default forwardRef(CustomMessageContent);
+export default memo(forwardRef(CustomMessageContent));
