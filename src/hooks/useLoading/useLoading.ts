@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import { sliceReducerLoading, toggle } from './reducers';
-
+import { sliceReducerLoading, toggle } from './reducers.ts';
 import { isLoadingSelector } from './selectors';
 export default function useLoading() {
   const [loading, dispathLoading] = useReducer(

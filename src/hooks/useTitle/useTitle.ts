@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import { sliceReducerTitle, add, remove } from './reducers';
+import { sliceReducerTitle, add, remove } from './reducers.ts';
 
 import { currentTitleSelector } from './selectors';
 export default function useTitle() {
@@ -8,6 +8,7 @@ export default function useTitle() {
     sliceReducerTitle.getInitialState(),
   );
   const title = useMemo(() => {
+    console.log(titles)
     return currentTitleSelector(titles);
   }, [titles]);
   const handleTitle = useCallback((title: string | number | undefined) => {
