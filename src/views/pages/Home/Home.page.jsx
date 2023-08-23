@@ -1,15 +1,11 @@
-import { memo, Fragment, useEffect } from 'react';
+import { memo, Fragment } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import useGlobalTitle from '~/hooks/useGlobalTitle';
+import { TitlePartial } from '~/views/partials';
 function HomeComponent(props) {
   const { title } = useLoaderData();
-  const handelGlobalTitle = useGlobalTitle();
-  useEffect(() => {
-    return handelGlobalTitle(title);
-  }, [title]);
   return (
     <Fragment>
-      Home page
+      <TitlePartial>{title}</TitlePartial>
     </Fragment>
   );
 }

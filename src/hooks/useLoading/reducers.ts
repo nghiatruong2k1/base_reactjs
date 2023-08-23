@@ -1,16 +1,23 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 export const sliceReducerLoading = createSlice({
   name: 'loading',
-  initialState: 0,
+  initialState: {},
   reducers: {
-    toggle: (state, { payload }: PayloadAction<boolean>) => {
-      if (payload) {
-        return state + 1;
+    add: (state, { payload }: PayloadAction<string>) => {
+      if (typeof state[payload] === 'number') {
+        state[payload] += 1;
       } else {
-        return state - 1;
+        state[payload] = 1;
       }
+      return state;
+    },
+    remove: (state, { payload }: PayloadAction<string>) => {
+      if (state[payload] > 0) {
+        state[payload] -= 1;
+      }
+      return state;
     },
   },
 });
-export const { toggle } = sliceReducerLoading.actions;
+export const { add, remove } = sliceReducerLoading.actions;
 export default sliceReducerLoading.reducer;

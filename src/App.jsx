@@ -1,15 +1,12 @@
 import { memo, Fragment } from 'react';
 import Router from '~/Router';
-import { MesageModule } from '~/views/modules';
-import { MessagePartial, TitlePartial } from '~/views/partials';
+import { TitleModule, LoadingModule } from '~/views/modules';
 function AppComponent() {
   return (
     <Fragment>
-      <MesageModule>
-        <TitlePartial />
-        <MessagePartial />
-        <Router />
-      </MesageModule>
+      <TitleModule />
+      <LoadingModule />
+      <Router />
     </Fragment>
   );
 }

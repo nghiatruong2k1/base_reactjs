@@ -1,7 +1,8 @@
-font-face {
-    font-family: 'TimesNewRoman';
-    src:  url('./times.ttf'),
-          url('./timesbd.ttf'),
-          url('./timesbi.ttf'),
-          url('./timesi.ttf');
-  }
+@font-face {
+  font-family: 'TimesNewRoman';
+  src: url('./times.ttf'), url('./timesbd.ttf'), url('./timesbi.ttf'),
+    url('./timesi.ttf');
+}
+.fa-times {
+  font-family: 'TimesNewRoman';
+}

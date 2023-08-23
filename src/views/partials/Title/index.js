@@ -1,1 +1,1 @@
-export { default } from './Title.tsx';
+export {default as TitlePartial} from "./Title.tsx"

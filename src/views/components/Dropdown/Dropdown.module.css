@@ -1,0 +1,60 @@
+.root {
+  .button {
+    [class*='MuiButton-endIcon'] {
+      > *:nth-of-type(1) {
+        font-size: 0.8em !important;
+      }
+    }
+  }
+  .paper {
+    padding: 0.25em !important;
+    border-radius: 0.5em !important;
+    color: var(--content-text) !important;
+    &.inherit {
+      background-color: var(--content-bg) !important;
+    }
+    &.error {
+      background-color: var(--error-bg) !important;
+    }
+    &.success {
+      background-color: var(--success-bg) !important;
+    }
+    &.warning {
+      background-color: var(--warning-bg) !important;
+    }
+    &.info {
+      background-color: var(--info-bg) !important;
+    }
+
+    .list {
+      padding: 0 !important;
+      border-radius: inherit !important;
+      > li {
+        border-radius: inherit !important;
+        position: relative;
+        margin: 0.1em 0 !important;
+        min-height: 1.2em !important;
+        &::after {
+          position: absolute;
+          inset: 0;
+          border-radius: inherit !important;
+          background-color: currentColor;
+          pointer-events: none !important;
+          transition: opacity 0.25s;
+        }
+        &[class*='active']::after {
+          content: '';
+          opacity: 0.2;
+        }
+        &:hover:after {
+          content: '';
+          opacity: 0.05;
+        }
+        &[class*='MuiButtonBase-root']:hover:after {
+          content: '';
+          opacity: 0.1;
+        }
+      }
+    }
+  }
+}

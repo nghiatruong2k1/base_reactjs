@@ -1,21 +1,22 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import { sliceReducerTitle, add, remove } from './reducers.ts';
-
-import { currentTitleSelector } from './selectors';
-export default function useTitle() {
+import { sliceReducerTitle } from './reducers.ts';
+import { currentTitleSelector } from './selectors.ts';
+export default function useTitle(): [string, Function] {
   const [titles, dispathTitle] = useReducer(
     sliceReducerTitle.reducer,
     sliceReducerTitle.getInitialState(),
   );
-  const title = useMemo(() => {
-    console.log(titles)
-    return currentTitleSelector(titles);
+  const title: string = useMemo(() => {
+    return currentTitleSelector({ titles });
   }, [titles]);
-  const handleTitle = useCallback((title: string | number | undefined) => {
-    dispathTitle(add(title));
-    return () => {
-      dispathTitle(remove());
-    };
-  }, []);
-  return [title, handleTitle];
+  const addTitle: Function = useCallback(
+    (title: string | number | undefined) => {
+      dispathTitle(sliceReducerTitle.actions.add(title));
+      return () => {
+        dispathTitle(sliceReducerTitle.actions.remove());
+      };
+    },
+    [],
+  );
+  return [title, addTitle];
 }

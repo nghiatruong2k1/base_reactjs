@@ -1,0 +1,23 @@
+.root {
+  &.disabled {
+  }
+  &.loading {
+  }
+  &.active {
+  }
+  &.inherit {
+    color: inherit !important;
+  }
+  &.error {
+    color: var(--error-bg) !important;
+  }
+  &.success {
+    color: var(--success-bg) !important;
+  }
+  &.warning {
+    color: var(--warning-bg) !important;
+  }
+  &.info {
+    color: var(--info-bg) !important;
+  }
+}

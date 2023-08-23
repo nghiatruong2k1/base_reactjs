@@ -1,12 +1,54 @@
 .root {
-  margin: 5px 0 !important;
-}
-.summary {
-  padding: 0.1em !important;
-  margin: 0 !important;
-  align-items: center !important;
-  gap: 2px !important;
-}
-.title {
-  flex: 1;
+  margin: 0.2em 0 !important;
+  &.inherit {
+    color: var(--content-text) !important;
+  }
+  &.error {
+    color: var(--error-text) !important;
+  }
+  &.success {
+    color: var(--success-text) !important;
+  }
+  &.warning {
+    color: var(--warning-text) !important;
+  }
+  &.info {
+    color: var(--info-text) !important;
+  }
+  &.outlined {
+    border: 1px solid currentColor !important;
+  }
+
+  &.elevation.inherit {
+    background-color: var(--content-bg) !important;
+  }
+  &.elevation.error {
+    background-color: var(--error-bg) !important;
+  }
+  &.elevation.success {
+    background-color: var(--success-bg) !important;
+  }
+  &.elevation.warning {
+    background-color: var(--warning-bg) !important;
+  }
+  &.elevation.info {
+    background-color: var(--info-bg) !important;
+  }
+  .summary {
+    padding: 0.1em !important;
+    margin: 0 !important;
+    align-items: center !important;
+    gap: 0.5em !important;
+  }
+  .details {
+    padding: 0.5em !important;
+    > .paper {
+      background-color: var(--content-bg) !important;
+      color: var(--content-text) !important;
+      word-break: break-word;
+    }
+  }
+  .title {
+    flex: 1;
+  }
 }

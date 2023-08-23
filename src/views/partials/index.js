@@ -1,2 +1,4 @@
-export { default as TitlePartial } from './Title';
-export { default as MessagePartial } from './Message';
+// export * from './Footer';
+// export * from './Header';
+export * from './ScrollToView';
+export * from './Title';

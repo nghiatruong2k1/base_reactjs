@@ -1,0 +1,15 @@
+.root {
+  width: 100% !important;
+  max-width: 22em !important;
+  min-width: 22em !important;
+  border-radius: 0.5em !important;
+}
+.details {
+  
+}
+.paper {
+  border-radius: 0.5em !important;
+}
+.close {
+  color: red !important;
+}

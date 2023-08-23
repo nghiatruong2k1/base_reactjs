@@ -1,19 +1,25 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import { sliceReducerLoading, toggle } from './reducers.ts';
-import { isLoadingSelector } from './selectors';
-export default function useLoading() {
+import { sliceReducerLoading } from './reducers.ts';
+import { isLoadingSelector } from './selectors.ts';
+export default function useLoading(): [boolean, Function, Function] {
   const [loading, dispathLoading] = useReducer(
     sliceReducerLoading.reducer,
     sliceReducerLoading.getInitialState(),
   );
-  const isLoading = useMemo(() => {
-    return isLoadingSelector(loading);
+  const isLoading: boolean = useMemo(() => {
+    return isLoadingSelector({ loading });
   }, [loading]);
-  const handleLoading = useCallback(() => {
-    dispathLoading(toggle(true));
+  const addLoading: Function = useCallback((key) => {
+    dispathLoading(sliceReducerLoading.actions.add(key));
     return () => {
-      dispathLoading(toggle(false));
+      dispathLoading(sliceReducerLoading.actions.remove(key));
     };
   }, []);
-  return [isLoading, handleLoading];
+  const removeLoading: Function = useCallback((key) => {
+    dispathLoading(sliceReducerLoading.actions.remove(key));
+    return () => {
+      dispathLoading(sliceReducerLoading.actions.add(key));
+    };
+  }, []);
+  return [isLoading, addLoading, removeLoading];
 }

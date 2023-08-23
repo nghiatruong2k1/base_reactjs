@@ -1,44 +1,78 @@
-.root{
-    overflow: hidden;
-    background-color: transparent !important;
-}
-.image{
+.root {
+  overflow: hidden;
+  background-color: transparent !important;
+  position: relative;
+  --aspect-ratio: auto;
+  & {
+    padding-top: calc((1 / (var(--aspect-ratio))) * 100%) !important;
+  }
+
+  @supports (aspect-ratio: 1) {
+    & {
+      aspect-ratio: var(--aspect-ratio) !important;
+      padding-top: initial !important;
+    }
+  }
+
+  > .image {
     object-fit: fill;
     object-position: center;
-    max-width: 100%;
-    max-height: 100%;
     display: block;
-}
-.fill{
-    object-fit: fill;
-}
-.cover{
-    object-fit: cover;
-}
-.contain{
-    object-fit: contain;
-}
-
-.placeholder{
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    &.hidden {
+      filter: blur(1em);
+    }
+    &.fill {
+      object-fit: fill;
+    }
+    &.cover {
+      object-fit: cover;
+    }
+    &.contain {
+      object-fit: contain;
+    }
+    &[src=''] + .overlay {
+      opacity: 1;
+    }
+    &[src=''] + .overlay {
+      opacity: 1;
+    }
+  }
+  &.loading {
+    > .overlay {
+      opacity: 1;
+      > .skeleton {
+        display: flex;
+      }
+    }
+  }
+  > .overlay {
     position: absolute;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
     z-index: 1;
-    background-color: var(--primary-overlay);
-}
-.skeleton{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    transform: none !important;
-    word-break: break-word !important;
-    text-align: center;
-}
-.skeleton *{
-    visibility: visible !important;
+    opacity: 0;
+    transition: opacity 0.25s linear;
+    background-color: var(--content-bg);
+    > * {
+      pointer-events: auto;
+    }
+    > .placeholder {
+      transform: none !important;
+      word-break: break-word !important;
+      text-align: center;
+    }
+    > .skeleton {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      transform: none !important;
+      display: none;
+    }
+  }
 }

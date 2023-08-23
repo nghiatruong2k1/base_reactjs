@@ -1,114 +1,142 @@
 export class Property<T> {
-  defaultValue: T;
-  displayName?: string;
-  validate?: Function;
-  setter?: Function;
+  defaultValue?: T;
+  displayName?: string | null;
+  validate?: any;
   getter?: Function;
-  readonly config: Function = function (callback: Function) {
-    callback && callback(this);
+  setter?: Function;
+  readonly config = function (callback: Function) {
+    callback(this);
     return this;
   };
   constructor(
-    defaultValue: T,
-    displayName?: string,
-    validate?: Function,
-    getter?: Function,
-    setter?: Function,
+    _defaultValue?: T,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
   ) {
     const _this = this;
-    _this.defaultValue = defaultValue;
-    _this.displayName = displayName;
-    _this.validate = validate;
-
+    _this.defaultValue = _defaultValue;
+    _this.displayName = _displayName;
+    _this.validate = _validate;
     _this.setter =
-      setter ||
+      _setter ||
       function (_value: T) {
         return _value;
       };
     _this.getter =
-      getter ||
+      _getter ||
       function (_value) {
         return _value;
       };
   }
 }
-
-// export function Properties<T extends Property<any>>(attrs: Record<string, T>) {
-//   type EntityType = {
-//     [P in keyof typeof attrs]?: (typeof attrs)[P]['defaultValue'];
-//   };
-//   class Entity implements EntityType {
-//     constructor(props: EntityType) {
-//       const _this = this;
-//       Object.keys(attrs).forEach((key) => {
-//         _this[key] = props[key] || attrs[key].defaultValue;
-//       });
-//     }
-//   }
-//   return [Entity, attrs, typeof Entity];
-// }
-
-export class EmailProp extends Property<string | null> {
-  constructor(defaultValue: string, displayName?: string, validate?: Function) {
-    function _getter(value) {}
-    function _setter(value) {}
-    function _validate(value, values) {
-      return validate && validate(value, values);
+type email = string & { __brand: 'email' };
+export class EmailProp extends Property<email | null> {
+  constructor(
+    _defaultValue?: email | null,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
+  ) {
+    const EmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function isEmail(_email: string): _email is email {
+      return EmailRegex.test(_email);
     }
-    super(defaultValue, displayName, _validate, _getter, _setter);
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
   }
 }
-export class PhoneProp extends Property<string | null> {
-  constructor(defaultValue: string, displayName?: string, validate?: Function) {
-    function _getter(value) {}
-    function _setter(value) {}
-    function _validate(value, values) {
-      return validate && validate(value, values);
+type phone = string & { __brand: 'phone' };
+export class PhoneProp extends Property<phone | null> {
+  constructor(
+    _defaultValue?: phone | null,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
+  ) {
+    const PhoneRegex = /^[0-9]{10}$/;
+    function isPhone(_phone: string): _phone is phone {
+      return PhoneRegex.test(_phone);
     }
-    super(defaultValue, displayName, _validate, _getter, _setter);
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
   }
 }
 export class PasswordProp extends Property<string | null> {
-  constructor(defaultValue: string, displayName?: string, validate?: Function) {
-    function _getter(value) {}
-    function _setter(value) {}
-    function _validate(value, values) {
-      return validate && validate(value, values);
-    }
-    super(defaultValue, displayName, _validate, _getter, _setter);
+  constructor(
+    _defaultValue?: string | null,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
+  ) {
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
   }
 }
 export class StringProp extends Property<string | null> {
-  constructor(defaultValue: string, displayName?: string, validate?: Function) {
-    function _getter(value) {}
-    function _setter(value) {}
-    function _validate(value, values) {
-      return validate && validate(value, values);
-    }
-    super(defaultValue, displayName, _validate, _getter, _setter);
+  constructor(
+    _defaultValue?: string | null,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
+  ) {
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
   }
 }
 export class NumberProp extends Property<number | null> {
-  constructor(defaultValue: number, displayName?: string, validate?: Function) {
-    function _getter(value) {}
-    function _setter(value) {}
-    function _validate(value, values) {
-      return validate && validate(value, values);
-    }
-    super(defaultValue, displayName, _validate, _getter, _setter);
+  constructor(
+    _defaultValue?: number | null,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
+  ) {
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
   }
 }
-export class BooleanProp extends Property<boolean | false> {
+export class BooleanProp extends Property<boolean> {
   constructor(
-    defaultValue: boolean,
-    displayName?: string,
-    validate?: Function,
+    _defaultValue?: boolean,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
   ) {
-    function _getter(value) {}
-    function _setter(value) {}
-    function _validate(value, values) {
-      return validate && validate(value, values);
-    }
-    super(defaultValue, displayName, _validate, _getter, _setter);
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
+  }
+}
+export class DatetimeProp extends Property<Date | null> {
+  constructor(
+    _defaultValue?: Date,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
+  ) {
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
+  }
+}
+export class ObjectProp extends Property<Object | null> {
+  constructor(
+    _defaultValue?: Object | null,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
+  ) {
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
+  }
+}
+export class ArrayProp<T> extends Property<T[] | null> {
+  constructor(
+    _defaultValue?: T[] | null,
+    _displayName?: string | null,
+    _validate?: any,
+    _getter?: Function,
+    _setter?: Function,
+  ) {
+    super(_defaultValue, _displayName, _validate, _getter, _setter);
   }
 }

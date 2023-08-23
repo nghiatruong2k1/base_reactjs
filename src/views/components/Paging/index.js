@@ -1,0 +1,1 @@
+export { default as PagingComponent} from './Paging.tsx';

@@ -10,7 +10,9 @@
     url('./fa-solid-900.ttf') format('truetype'),
     url('./fa-solid-900.svg#fontawesome') format('svg');
 }
-
+.fa-s {
+  font-family: 'Font Awesome 5 Solid';
+}
 @font-face {
   font-family: 'Font Awesome 5 Regular';
   font-style: normal;
@@ -23,6 +25,9 @@
     url('./fa-regular-400.ttf') format('truetype'),
     url('./fa-regular-400.svg#fontawesome') format('svg');
 }
+.fa-r {
+  font-family: 'Font Awesome 5 Regular';
+}
 @font-face {
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
@@ -34,4 +39,7 @@
     url('./fa-brands-400.woff') format('woff'),
     url('./fa-brands-400.ttf') format('truetype'),
     url('./fa-brands-400.svg#fontawesome') format('svg');
+}
+.fa-b {
+  font-family: 'Font Awesome 5 Brands';
 }

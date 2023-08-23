@@ -1,1 +1,1 @@
-export { default as ViewContentComponent} from './ViewContent';
+export { default as ViewContentComponent} from './ViewContent.tsx';

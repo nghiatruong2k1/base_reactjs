@@ -1,0 +1,22 @@
+.root {
+  flex: 1;
+  width: 100%;
+  .stack {
+    align-items: center;
+    .chevron {
+      white-space: nowrap;
+      margin: auto 0.2em !important;
+      border: 0 !important;
+      text-transform: uppercase !important;
+    }
+    .group {
+      overflow: hidden;
+      flex: 1;
+      align-items: center;
+      justify-content: stretch;
+      > * {
+        margin: 0.2em !important;
+      }
+    }
+  }
+}

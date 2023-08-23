@@ -1,17 +1,18 @@
-import { ReactNode, Fragment, useEffect ,memo} from 'react';
-import { GlobalStateType, useSelectorGlobal } from '~/states';
-import { currentTitleSelector } from '~/hooks/useTitle/selectors';
-export interface Props {
-}
-function TitleModule(props: Props) {
-  const currentTitle = useSelectorGlobal((state: GlobalStateType) =>
-    currentTitleSelector(state.titles),
-  );
+import { useEffect, memo, ReactNode } from 'react';
+import { useSelectorGlobal } from '~/stores';
+import { currentTitleSelector } from '~/hooks/useTitle/selectors.ts';
+interface Props {}
+
+function TitleModule({}: Props) {
+  const currentTitle = useSelectorGlobal(currentTitleSelector);
   useEffect(() => {
     document.title = `${
-      (currentTitle !== '' ? currentTitle + ' | ' : '') + process.env.REACT_APP_WEBSITE_NAME
+      (currentTitle !== '' ? currentTitle + ' | ' : '') +
+      process.env.REACT_APP_WEBSITE_NAME
     }`;
   }, [currentTitle]);
-  return <Fragment></Fragment>;
+
+  return <></>;
 }
-export default memo(TitleModule)
+// export { addGlobalTitle };
+export default memo(TitleModule);

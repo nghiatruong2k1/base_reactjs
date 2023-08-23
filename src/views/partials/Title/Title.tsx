@@ -1,17 +1,13 @@
-import { ReactNode, Fragment, useEffect } from 'react';
-import { GlobalStateType, useSelectorGlobal } from '~/states';
-import { currentTitleSelector } from '~/hooks/useTitle/selectors';
-export interface Props {
-  children: ReactNode;
+import { memo, useEffect } from 'react';
+import { useGlobalTitle } from '~/hooks';
+interface Props {
+  children: string;
 }
-export default function TitlePartial({ children }: Props) {
-  const title = useSelectorGlobal((state: GlobalStateType) =>
-    currentTitleSelector(state.titles),
-  );
+function TitlePartial({ children }: Props) {
+  const handleTitle = useGlobalTitle();
   useEffect(() => {
-    document.title = `${
-      (title !== '' ? title + ' | ' : '') + process.env.REACT_APP_WEBSITE_NAME
-    }`;
-  }, [title]);
-  return <Fragment>{children}</Fragment>;
+    return handleTitle(children);
+  }, [children]);
+  return <></>;
 }
+export default memo(TitlePartial);

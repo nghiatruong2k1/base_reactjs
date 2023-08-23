@@ -1,7 +1,7 @@
-export class NewArray extends Array {
+export class NewArray<T> extends Array {
   readonly addPrivate: Function;
   readonly addPrivates: Function;
-  constructor(_props, _private) {
+  constructor(_props: Array<T> = [], _private: Object = {}) {
     super();
     const _this = this;
     Array.isArray(_props) &&
@@ -21,11 +21,9 @@ export class NewArray extends Array {
     Object.defineProperty(_this, 'addPrivates', {
       enumerable: false,
       value: function (_props) {
-        if (typeof _props === 'object') {
-          Object.keys(_props).forEach((key) => {
-            this.addPrivate(key, _props[key]);
-          });
-        }
+        Object.keys(_props).forEach((key) => {
+          this.addPrivate(key, _props[key]);
+        });
       },
     });
     _this.addPrivates(_private);

@@ -1,10 +1,11 @@
-import { Fragment, ReactNode, memo } from 'react';
+import { Fragment, ElementType, memo } from 'react';
 //---------//
 import styles from './ViewContent.module.css';
+import { Box, Skeleton } from '@mui/material';
 
-export interface Props {}
+interface Props {}
 
 function ViewContentLoadingComponent({}: Props) {
-  return <Fragment>Loading...</Fragment>;
+  return <Skeleton className="fullview"></Skeleton>;
 }
 export default memo(ViewContentLoadingComponent);

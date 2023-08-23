@@ -1,0 +1,89 @@
+.MuiButtonBase-root.MuiButton-root {
+  text-transform: initial;
+}
+
+.MuiAccordionSummary-root {
+  min-height: 1.2em !important;
+}
+.MuiCardContent-root {
+  padding: 0.25em !important;
+}
+.MuiButton-endIcon,
+.MuiButton-startIcon {
+  display: flex;
+}
+
+.MuiRating-root {
+  align-items: center;
+  justify-content: center;
+}
+
+.MuiChip-root {
+  height: 1.2em !important;
+  min-height: 1.2em !important;
+  padding: 0.1em 0.2em !important;
+}
+.MuiChip-avatar {
+}
+
+.MuiChip-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  height: 100% !important;
+}
+.MuiPaper-root {
+  color: var(--content-text) !important;
+}
+.MuiButtonGroup-contained,
+.MuiPaper-elevation {
+  box-shadow: var(--shadow-1) 0px 3px 1px -2px, var(--shadow-2) 0px 2px 2px 0px,
+    var(--shadow-3) 0px 1px 5px 0px !important;
+}
+.MuiPaper-root:not(.MuiPopover-paper):not(.MuiDialog-paper) {
+  background-color: var(--content-alpha) !important;
+}
+.MuiPopover-paper {
+  background-color: var(--content-bg) !important;
+}
+.MuiButtonGroup-root > .MuiButtonBase-root {
+  margin: 0.2em;
+}
+/* .MuiDialogContent-root{
+  padding: 0.5em !important;
+}
+.MuiDialog-paperScrollPaper{
+  padding: 0.5em !important;
+} */
+[class*='Small'],
+[class*='small'] {
+  font-size: 0.875em !important;
+}
+[class*='Medium'],
+[class*='medium'] {
+  font-size: 1em !important;
+}
+[class*='Large'],
+[class*='large'] {
+  font-size: 1.2em !important;
+}
+
+.MuiTableRow-root {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: stretch;
+}
+.MuiTableCell-root {
+  padding: 0.2em 0.5em !important;
+  overflow: hidden;
+}
+
+.MuiGrid-item {
+  padding: 0.2rem;
+}
+
+[class*='disabled'],
+:disabled,
+.disabled {
+  pointer-events: none !important;
+}

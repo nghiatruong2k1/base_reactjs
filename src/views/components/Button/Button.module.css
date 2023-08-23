@@ -1,37 +1,92 @@
-.default {
-  color: var(--content-text) !important;
-}
-.error {
-  color: var(--error-text) !important;
-}
-.success {
-  color: var(--success-text) !important;
-}
-.warning {
-  color: var(--warning-text) !important;
-}
-.info {
-  color: var(--info-text) !important;
-}
-.text {
-  background-color: transparent !important;
-}
-.outlined {
-  border: 1px solid currentColor !important;
-}
+.root {
+  font-weight: bold !important;
+  min-width: fit-content !important;
+  gap: 0.5em;
+  transition: opacity 0.25s linear, color 0.25s linear, background 0.25s linear,
+    border 0.15s linear, box-shadow 0.25s linear;
 
-.contained.default {
-  background-color: var(--content-bg) !important;
-}
-.contained.error {
-  background-color: var(--error-bg) !important;
-}
-.contained.success {
-  background-color: var(--success-bg) !important;
-}
-.contained.warning {
-  background-color: var(--warning-bg) !important;
-}
-.contained.info {
-  background-color: var(--info-bg) !important;
+  &.inherit {
+    color: inherit !important;
+  }
+  &.text {
+    background-color: transparent !important;
+  }
+  &.text.error {
+    color: var(--error-bg) !important;
+  }
+  &.text.success {
+    color: var(--success-bg) !important;
+  }
+  &.text.warning {
+    color: var(--warning-bg) !important;
+  }
+  &.text.info {
+    color: var(--info-bg) !important;
+  }
+  &.outlined {
+    border-style: solid !important;
+    border-width: 0.1em !important;
+  }
+  &.outlined.inherit {
+    border-color: currentColor !important;
+  }
+  &.outlined.error {
+    border-color: var(--error-text) !important;
+    color: var(--error-bg) !important;
+  }
+  &.outlined.success {
+    border-color: var(--success-text) !important;
+    color: var(--success-bg) !important;
+  }
+  &.outlined.warning {
+    border-color: var(--warning-text) !important;
+    color: var(--warning-bg) !important;
+  }
+  &.outlined.info {
+    border-color: var(--info-text) !important;
+    color: var(--info-bg) !important;
+  }
+
+  &.contained.inherit {
+    background-color: var(--content-alpha) !important;
+  }
+  &.contained.error {
+    background-color: var(--error-bg) !important;
+    color: var(--error-text) !important;
+  }
+  &.contained.success {
+    background-color: var(--success-bg) !important;
+    color: var(--success-text) !important;
+  }
+  &.contained.warning {
+    background-color: var(--warning-bg) !important;
+    color: var(--warning-text) !important;
+  }
+  &.contained.info {
+    background-color: var(--info-bg) !important;
+    color: var(--info-text) !important;
+  }
+  &:not(&.icon) {
+    padding: 0.2em 0.8em !important;
+    border-radius: 0.5em !important;
+    /* line-height: 1.4 !important; */
+  }
+  &.icon {
+  }
+  &.disabled {
+    pointer-events: none !important;
+  }
+  &.loading {
+    opacity: 0.6 !important;
+  }
+  &.active {
+  }
+  > .child {
+    color: inherit;
+    text-transform: inherit;
+  }
+  > .startIcon,
+  > .endIcon {
+    margin: 0 !important;
+  }
 }

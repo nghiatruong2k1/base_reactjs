@@ -16,7 +16,7 @@ import {
   useSelectorGlobal,
   GlobalStateType,
   useDispatchGlobal,
-} from '~/states/init.ts';
+} from '~/stores/Global/init.ts';
 import { sliceReducerTheme } from '~/assets/styles/reducers.ts';
 export interface Props {}
 

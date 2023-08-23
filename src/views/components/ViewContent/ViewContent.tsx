@@ -1,30 +1,33 @@
-import { Fragment, ReactNode, memo } from 'react';
+import { Fragment, ElementType, ReactNode, memo } from 'react';
 //---------//
 import styles from './ViewContent.module.css';
 import ViewContentLoading from './ViewContent.loading.tsx';
 import ViewContentEmpty from './ViewContent.empty.tsx';
 
-export interface Props {
-  children: ReactNode;
-  loading: boolean;
-  loadview: ReactNode;
-  empty: boolean;
-  emptyview: ReactNode;
+interface Props {
+  component?: ElementType<any> | undefined;
+  children?: ReactNode;
+  loading?: boolean;
+  loadView?: boolean;
+  empty?: boolean;
+  emptyView?: ReactNode;
 }
 
 function ViewContentComponent({
+  component = Fragment,
   children,
   loading,
-  loadview,
+  loadView = true,
   empty,
-  emptyview,
+  emptyView,
+  ...props
 }: Props) {
-  return (
-    <Fragment>
-      {(loading && (loadview || <ViewContentLoading />)) ||
-        (empty && (emptyview || <ViewContentEmpty />)) ||
-        children}
-    </Fragment>
-  );
+  if (!loading && empty) {
+    return emptyView || <ViewContentEmpty component={component} {...props} />;
+  }
+  if (loading && loadView === true) {
+    return <ViewContentLoading />;
+  }
+  return <Fragment>{children}</Fragment>;
 }
 export default memo(ViewContentComponent);

@@ -1,0 +1,12 @@
+.root{
+    position: fixed !important;
+    right: 1em;
+    top: 1em;
+    z-index: var(--loading-index);
+    .button{
+        pointer-events: none !important;
+        font-size: 2em !important;
+        padding: 0.5em !important;
+        background: var(--content-bg) !important;
+    }
+}

@@ -1,36 +1,66 @@
 import { NewObject } from './NewObject.ts';
-import { generatePath } from 'react-router-dom';
 interface OptionFace {
-  children: Array<RouteConfig> | [];
-  params: Object | {};
+  children?: { [key: string]: RouteConfigFace };
+  params?: { [key: string]: any } | {};
 }
-
-export class RouteConfig extends NewObject {
-  path: string = '';
-  page: string | null = null;
-  layout: string | null = null;
-  parent: RouteConfig | null = null;
-  params: Object = {};
+interface RouteConfigFace {
+  path: string;
+  page: string | null;
+  layout: string | 'Default' | 'Inherit' | null;
+  parent: RouteConfig | null;
+  params: OptionFace['params'];
   getFullPath: Function;
-
+  getLayout: Function;
+  getPattern: Function;
+}
+export class RouteConfig extends NewObject implements RouteConfigFace {
+  path = '';
+  page = '';
+  layout = '';
+  parent = null;
+  params = {};
+  getFullPath = () => '';
+  getLayout = () => '';
+  getPattern = () => '';
   constructor(
-    path: string | '',
-    page: string | null,
-    layout: string | null,
+    path: string = '',
+    page: string | null = '',
+    layout: string | 'Default' | 'Inherit' | null = 'Inherit',
     option: OptionFace = {
-      children: [],
+      children: {},
       params: {},
     },
   ) {
     const { children, params } = option;
     const parent = null;
-    function getFullPath() {
-      if (_this.parent) {
-        let parent_path = _this.parent.path;
-        return `${parent_path}/${path}` || '';
-      } else {
-        return path || '';
+    function getFullPath(): string {
+      if (this.parent) {
+        const parent_path = this.parent.getFullPath();
+        if (parent_path) {
+          if (this.path) {
+            return `${parent_path}/${this.path}`;
+          }
+          return parent_path;
+        }
       }
+      return this.path || '';
+    }
+    function getPattern(): string[] {
+      return this.reduce(
+        (rs, child) => {
+          return [...rs, ...child.getPattern()];
+        },
+        [this.getFullPath()],
+      );
+    }
+    function getLayout(): string {
+      if (this.layout === 'Inherit') {
+        if (this.parent) {
+          return this.parent.getLayout();
+        }
+        return null;
+      }
+      return this.layout;
     }
     super({}, {});
     const _this = this;
@@ -40,6 +70,8 @@ export class RouteConfig extends NewObject {
       page,
       layout,
       parent,
+      getPattern,
+      getLayout,
       getFullPath,
     });
     if (children) {
@@ -49,11 +81,4 @@ export class RouteConfig extends NewObject {
       });
     }
   }
-}
-export function GetAction(action: RouteConfig, params: Object = {}) {
-  if (action && typeof action.path === 'string' && action.path !== '*') {
-    let str = `/${action.getFullPath()}`;
-    return generatePath(str, { ...action.params, ...params });
-  }
-  return '/404';
 }

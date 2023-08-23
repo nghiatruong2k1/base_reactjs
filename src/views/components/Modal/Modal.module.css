@@ -1,0 +1,18 @@
+.root {
+  .header {
+    padding: 0.1em 0.5em !important;
+    display: flex;
+    align-items: center;
+    .title {
+      flex: 1;
+    }
+  }
+  .body {
+    padding: 0.25em !important;
+  }
+  .footer {
+  }
+  .paperScrollPaper {
+    padding: 0.5em !important;
+  }
+}

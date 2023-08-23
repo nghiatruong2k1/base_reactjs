@@ -1,42 +1,82 @@
-import { memo } from 'react';
+import { memo, ElementType, useCallback, useMemo, ReactNode } from 'react';
 //---------//
 import styles from './Image.module.css';
 import clsx from 'clsx';
+import { Box, Skeleton, BoxProps, SxProps } from '@mui/material';
+import { useDisclosure } from '@mantine/hooks';
 
-export interface Classes {
+interface Classes {
   root?: string | '';
   image?: string | '';
 }
-export interface Props {
-  src: string;
-  alt?: string;
-  classes?: Classes;
-  fit?: 'fill' | 'cover' | 'contain';
-  height?: number | string | undefined;
-  width?: number | string | undefined;
-}
 
+export type ImageComponentProps<
+  P = {},
+  T extends ElementType<any> = 'figure',
+> = BoxProps<
+  T,
+  P & {
+    src: string;
+    className?: string;
+    alt?: string;
+    classes?: Classes;
+    fit?: 'fill' | 'cover' | 'contain';
+    ratio?: number | 'auto';
+    height?: any;
+    width?: any;
+    loading?: boolean;
+    hidden?: boolean;
+  }
+>;
+const defaultDir = '/imgs/default-img.jpg';
 function ImageComponent({
-  src,
-  alt,
+  src = '',
+  alt = '',
+  className = '',
   fit = 'fill',
   classes = {},
+  ratio = 'auto',
   height = 'auto',
   width = 'auto',
-}: Props) {
+  loading = false,
+  hidden = false,
+  component = 'figure',
+  sx = {},
+  ...props
+}: ImageComponentProps) {
+  const [isLoading, { close }] = useDisclosure(true);
+  const handleError = useCallback(
+    (e) => {
+      if (!loading && e.target.src !== defaultDir) {
+        e.target.src = defaultDir;
+      }
+      close();
+    },
+    [loading],
+  );
   return (
-    <figure className={clsx(styles.root, classes.root)}>
+    <Box
+      {...props}
+      component={component}
+      style={{ height, width, '--aspect-ratio': ratio }}
+      className={clsx(className, styles.root, classes.root, {
+        [styles.loading]: loading || isLoading,
+      })}
+    >
       <img
-        src={src}
         alt={alt || src || 'image'}
         loading={'lazy'}
-        className={clsx(styles.image, styles[fit], classes.image)}
-        style={{
-          height: height,
-          width: width,
-        }}
+        src={(!loading && src) || ''}
+        onLoad={close}
+        onError={handleError}
+        className={clsx(styles.image, styles[fit], classes.image, {
+          [styles.hidden]: hidden,
+        })}
       />
-    </figure>
+      <div className={clsx(styles.overlay)}>
+        <Skeleton className={clsx(styles.skeleton)} />
+      </div>
+    </Box>
   );
 }
 export default memo(ImageComponent);

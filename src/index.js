@@ -3,18 +3,22 @@ import ReactDOM from 'react-dom/client';
 import App from '~/App';
 import reportWebVitals from './reportWebVitals';
 
+import { GlobalStore } from './stores';
 import Fonts from './assets/fonts';
-import States from './states';
 import Styles from './assets/styles';
-export const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <States>
-    <Fonts>
-      <Styles>
-        <App/>
-      </Styles>
-    </Fonts>
-  </States>,
+import { MesageProvider } from './stores/Message';
+export const rootElement = document.getElementById('root');
+const rootDom = ReactDOM.createRoot(rootElement);
+rootDom.render(
+  <MesageProvider>
+    <GlobalStore>
+      <Fonts>
+        <Styles>
+            <App />
+        </Styles>
+      </Fonts>
+    </GlobalStore>
+  </MesageProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

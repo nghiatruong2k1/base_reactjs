@@ -1,0 +1,12 @@
+.root {
+  gap: 1em !important;
+  padding: 1em 0 !important;
+  .icon {
+    font-size: 5em !important;
+    color: var(--info-text) !important;
+  }
+  .title {
+    font-size: 2em !important;
+    font-weight: bold !important;
+  }
+}

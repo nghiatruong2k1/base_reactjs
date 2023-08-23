@@ -1,9 +1,18 @@
 export function getLocalStore(key: string, initData) {
-  return JSON.parse(localStorage.getItem(key)) ?? initData ?? undefined;
+  try {
+    const data = JSON.parse(localStorage.getItem(key) ?? null);
+    return data ?? initData ?? null;
+  } catch {
+    return initData ?? null;
+  }
 }
 export function setLocalStore(key: string, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+  try {
+    localStorage.setItem(key, JSON.stringify(value ?? null));
+  } catch {}
 }
 export function deleteLocalStore(key: string) {
-  localStorage.delete(key);
+  try {
+    localStorage.delete(key);
+  } catch {}
 }

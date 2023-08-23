@@ -1,1 +1,1 @@
-export { default as ImageComponent} from './Image';
+export { default as ImageComponent} from './Image.tsx';

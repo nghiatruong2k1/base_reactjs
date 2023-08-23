@@ -5,8 +5,9 @@ import {
   useMemo,
   useCallback,
   useRef,
+  useEffect,
 } from 'react';
-import { ClickAwayListener, Menu } from '@mui/material';
+import { Menu } from '@mui/material';
 import { useDisclosure } from '@mantine/hooks';
 import clsx from 'clsx';
 //---------//
@@ -15,19 +16,19 @@ import {
   ButtonComponent,
   ButtonComponentProps,
 } from '~/views/components/Button';
-export interface Classes {
+interface Classes {
   root?: string | '';
+  button?: string | '';
   paper?: string | '';
   list?: string | '';
 }
-export interface Props extends ButtonComponentProps {
+export type DropdownProps = ButtonComponentProps<{
   id: string;
   children?: ReactNode | ReactNode[] | undefined;
   opened?: boolean;
   button: ReactNode;
-  buttonComponent?: JSXElementConstructor<any>;
-  classes?: Classes;
-}
+  classes?: ButtonComponentProps['classes'] & Classes;
+}>;
 
 function DropdownComponent({
   id,
@@ -35,32 +36,39 @@ function DropdownComponent({
   opened = false,
   classes = {},
   button = 'On Click',
-  buttonComponent = ButtonComponent,
+  className = "",
+  color = 'inherit',
   ...props
-}: Props) {
-  const [isOpen, { toggle, close }] = useDisclosure(opened);
-  const buttonRef = useRef();
-  const BtnComponent = useMemo(() => {
-    return buttonComponent;
-  }, [buttonComponent]);
+}: DropdownProps) {
+  const [isOpen, { toggle, open, close }] = useDisclosure();
+  const buttonRef = useRef<HTMLButtonElement>();
   const handleClose = useCallback(
     (e) => {
-      if (e.target?.dataset?.close == `#${id}`) {
+      if (e.target?.dataset?.close === `#${id}`) {
         close();
       }
     },
     [id],
   );
+  useEffect(() => {
+    if (opened) {
+      open();
+    } else {
+      close();
+    }
+  }, [opened]);
   return (
     <>
-      <BtnComponent
+      <ButtonComponent
         {...props}
+        color={color}
         data-target={`#${id}`}
         ref={buttonRef}
         onClick={toggle}
+        className={clsx(styles.button, classes.button, className)}
       >
         {button}
-      </BtnComponent>
+      </ButtonComponent>
       <Menu
         id={id}
         open={(buttonRef.current && isOpen) || false}
@@ -71,7 +79,7 @@ function DropdownComponent({
         onClick={handleClose}
         classes={{
           root: clsx(styles.root, classes.root),
-          paper: clsx(styles.paper, classes.paper),
+          paper: clsx(styles.paper, classes.paper, styles[color]),
           list: clsx(styles.list, classes.list),
         }}
       >
