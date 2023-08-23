@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonComponent } from '~/views/components';
 import { isLoadingSelector } from '~/hooks/useLoading/selectors.ts';
 import styles from './Loading.module.css';
-
 interface Props {
   children: ReactNode;
 }
@@ -35,5 +34,5 @@ function LoadingModule({ children }: Props) {
     </>
   );
 }
-// export { addGlobalLoading, removeGlobalLoading };
+
 export default memo(LoadingModule);
